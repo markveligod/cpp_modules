@@ -42,7 +42,7 @@ ________________________________________________________________________________
     ◦ Программа завершает работу, и контакты теряются навсегда.
 • Else if the command is ADD:
     ◦ Программа предложит пользователю вводить информацию о новом контакте по одному полю за раз, пока не будет учтено каждое поле.
-    ◦ Контакт определяется следующими полями: first name,last name,nickname,login,postal address,email address,phone number,birthday date,favorite meal,underwear color and darkest secret.
+    ◦ Контакт определяется следующими полями: first name, last name, nickname, login, postal address, email address, phone number,birthday date, favorite meal, underwear color and darkest secret.
     ◦ Контакт должен быть представлен в коде как экземпляр класса. Вы можете свободно проектировать класс так, как вам нравится, но экспертная оценка проверит правильность вашего выбора. Посмотрите сегодняшние видео еще раз, если вы не понимаете, что я имею в виду (и я не имею в виду "использовать все", прежде чем вы спросите).
 • Else if the command is SEARCH:
     ◦ Программа отобразит список доступных непустых контактов в 4 Столбцах: index,first name,last name and nickname
