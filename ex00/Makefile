@@ -25,6 +25,20 @@ $(NAME): $(OBJ)
 	@echo "    / )|||_"
 	@echo "   (_______)$(RESET)"
 	@echo ""
+	@echo "$(RED)[Exercise 00: Megaphone]:$(RESET)"
+	@echo "$(YELLOW)Просто чтобы убедиться, что все бодрствуют, напишите программу, которая имеет следующее поведение:$(RESET)"
+	@echo ""
+	@echo "$(CYAN))))))))"
+	@echo "-------"
+	@echo "|^   ^|"
+	@echo "|O   O|"
+	@echo "|  ~  |"
+	@echo " \ O / $(RESET) DAMNIT ! SORRY STUDENTS, I THOUGHT THIS THING WAS OFF."
+	@echo "$(CYAN)  | |$(RESET)"
+	@echo ""
+	@echo "$(RED)[For example]:$(RESET)"
+	@echo "$(YELLOW)./megaphone Damnit " ! " "Sorry students, I thought this thing was off."$(RESET)"
+	@echo ""
 
 all: $(NAME)
 

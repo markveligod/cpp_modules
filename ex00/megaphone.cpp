@@ -21,9 +21,10 @@ int main(int ac, char **av)
                 std::cout << (char)std::toupper(temp_str[j]);
                 j++;
             }
-            std::cout << "\n";
+            std::cout << " ";
             i++;
         }
+        std::cout << "\n";
     }
     return (0);
 }
