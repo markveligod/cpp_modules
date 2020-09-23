@@ -5,6 +5,7 @@
 class Data
 {
     private:
+        int count;
         std::string first_name;
         std::string last_name;
         std::string nickname;
@@ -17,6 +18,8 @@ class Data
         std::string underwear_color;
         std::string darkest_secret;
     public:
+        Data();
+        ~Data();
         void set_data();
         void search_data();
 };

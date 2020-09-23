@@ -1,6 +1,6 @@
 NAME = phonebook
 FLAGS = -Wall -Wextra -Werror
-SRC = ./main.cpp ./Data.Class.cpp
+SRC = ./main.cpp ./Data.Class.cpp ./Utils.cpp
 HDRS = ./main.hpp ./Data.Class.hpp
 OBJ=$(SRC:.cpp=.o)
 
