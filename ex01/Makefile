@@ -26,6 +26,7 @@ $(NAME): $(OBJ) $(HDRS)
 	@echo "    / )|||_"
 	@echo "   (_______)$(RESET)"
 	@echo ""
+	@echo ""
 
 all: $(NAME)
 

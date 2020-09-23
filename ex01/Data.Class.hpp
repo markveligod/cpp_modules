@@ -6,6 +6,7 @@ class Data
 {
     private:
         int count;
+        int contacts;
         std::string first_name;
         std::string last_name;
         std::string nickname;

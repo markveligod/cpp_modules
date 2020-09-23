@@ -3,6 +3,7 @@
 Data::Data()
 {
     this->count = 0;
+    this->contacts = 0;
     std::cout << YELLOW <<"[Constructor]" << RESET << GREEN << "[OK]\n" << RESET;
 }
 
@@ -14,6 +15,12 @@ Data::~Data()
 void Data::set_data()
 {
     std::cout << CYAN << "[ADD section]: " << RESET << GREEN << "[OPEN]\n" << RESET;
+    if (this->contacts == 8)
+    {
+        std::cout << RED << "[Error]: " << RESET << "Контактов 8 шт.\n";
+        std::cout << CYAN << "[ADD section]: " << RESET << RED << "[CLOSE]\n" << RESET;
+        return ;
+    }
     add_data("first name", &this->first_name);
     add_data("last name", &this->last_name);
     add_data("nickname", &this->nickname);
@@ -26,6 +33,7 @@ void Data::set_data()
     add_data("underwear color", &this->underwear_color);
     add_data("darkest secret", &this->darkest_secret);
     std::cout << CYAN << "[ADD section]: " << RESET << RED << "[CLOSE]\n" << RESET;
+    this->contacts++;
     return ;
 }
 
@@ -43,6 +51,7 @@ void Data::search_data()
         return ;
     }
     show_header();
+    this->count = 0;
     show_data(this->first_name, this->last_name, this->nickname, &this->count);
     while (index == 0)
     {

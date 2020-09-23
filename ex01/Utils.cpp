@@ -45,8 +45,11 @@ int print_data(std::string str, int index)
             info[i] = '.';
             info[i + 1] = '\0';
             std::cout << "|" << std::setw(10) << info;
-            while (str[i] && str[i] != '\n')
+            while (str[index] && str[index] != '\n')
+            {
                 i++;
+                index++;
+            }
             return (i);
         }
         info[i] = str[index];
@@ -67,8 +70,6 @@ void show_data(std::string f_name, std::string l_name, std::string nick, int *co
     int ind_nick = 0;
     bool check = true;
 
-    if ((f_name.length() + l_name.length() + nick.length()) == 0)
-        return ;
     while (check)
     {
         std::cout << "|" << std::setw(10) << index + 1;
@@ -76,11 +77,11 @@ void show_data(std::string f_name, std::string l_name, std::string nick, int *co
         ind_l_name += print_data(l_name, ind_l_name);
         ind_nick += print_data(nick, ind_nick);
         std::cout << "|\n";
-        if (f_name[ind_f_name])
+        if (f_name[ind_f_name] == '\n')
             ind_f_name++;
-        if (l_name[ind_l_name])
+        if (l_name[ind_l_name] == '\n')
             ind_l_name++;
-        if (nick[ind_nick])
+        if (nick[ind_nick] == '\n')
             ind_nick++;
         index++;
         (*count)++;
