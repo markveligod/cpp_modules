@@ -125,7 +125,7 @@ Files to turn in : Weapon.cpp Weapon.hpp HumanA.cpp HumanA.hpp HumanB.cpp HumanB
 Forbidden functions : None
 
 Создайте класс Weapon, который имеет тип string, и getType, который возвращает ссылку const на эту строку. Также имеет setType.
-Теперь создайте два класса, HumanA и Humana, которые оба имеют Weapon, имя и функцию attack(), которая отображает что-то вроде: NAME attacks with his WEAPON_TYPE
+Теперь создайте два класса, HumanA и HumanB, которые оба имеют Weapon, имя и функцию attack(), которая отображает что-то вроде: NAME attacks with his WEAPON_TYPE
 
 Сделайте так, чтобы следующий код производил атаки с помощью "crude spiked club", а затем "some other type of club", в обоих тестовых случаях:
 
