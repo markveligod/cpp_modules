@@ -3,12 +3,12 @@
 ZombieEvent::ZombieEvent()
 {
 	this->_type = "";
-    std::cout << "[Constructor]" << "[OK]\n";
+    std::cout << YELLOW << "[ZombieEvent]" << GREEN << "[START]\n" << RESET;
 }
 
 ZombieEvent::~ZombieEvent()
 {
-    std::cout << "[Destructor]" << "[OK]\n";
+    std::cout << YELLOW << "[ZombieEvent]" << RED << "[END]\n" << RESET;
 }
 
 void ZombieEvent::setZombieType(std::string type)

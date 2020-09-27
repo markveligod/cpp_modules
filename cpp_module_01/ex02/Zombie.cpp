@@ -2,12 +2,12 @@
 
 Zombie::Zombie(std::string name, std::string type): _name(name), _type(type)
 {
-    std::cout << "[Constructor]" << "[OK]\n";
+    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[LIVE]\n" << RESET;
 }
 
 Zombie::~Zombie()
 {
-    std::cout << "[Destructor]" << "[OK]\n";
+    std::cout << YELLOW << "[" << this->_name << "]" << RED << "[DEAD]\n" << RESET;
 }
 
 void Zombie::announce()
