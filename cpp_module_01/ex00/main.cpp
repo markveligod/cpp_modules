@@ -1,4 +1,4 @@
-#include "Pony.Class.hpp"
+#include "Pony.hpp"
 
 void ponyOnTheStack(void)
 {
