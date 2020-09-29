@@ -5,7 +5,7 @@ Fixed::Fixed():point(0)
     std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed(const int integer):point(integer)
+Fixed::Fixed(const int integer)
 {
     std::cout << "Int constructor called\n";
     this->point = (integer << this->bits);
@@ -41,10 +41,10 @@ int Fixed::getRawBits() const
     return (this->point);
 }
 
-void Fixed::setRawBits(int const row)
+void Fixed::setRawBits(int const raw)
 {
     std::cout << "setRawBits member function called\n";
-    this->point = row;
+    this->point = raw;
 }
 
 float Fixed::toFloat( void ) const
