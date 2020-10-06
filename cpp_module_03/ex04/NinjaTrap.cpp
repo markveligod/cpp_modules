@@ -1,5 +1,13 @@
 #include "NinjaTrap.hpp"
 
+NinjaTrap::NinjaTrap()
+{
+	std::cout << YELLOW << "[NinjaTrap]->[" << this->_name << "]" << GREEN << "[LIVE]\n" << RESET;
+	this->energy_points = 120;
+	this->max_energy_points = 120;
+	this->melee_attack_damage = 60;
+}
+
 NinjaTrap::NinjaTrap(std::string name)
 {
     this->hit_points = 60;
@@ -30,7 +38,7 @@ NinjaTrap::NinjaTrap(std::string name)
 
 NinjaTrap::~NinjaTrap()
 {
-    std::cout << YELLOW << "[" << this->_name << "]" << RED << "[DESTROY]\n" << RESET;
+    std::cout << YELLOW << "[NinjaTrap]->[" << this->_name << "]" << RED << "[DEAD]\n" << RESET;
 }
 
 void NinjaTrap::ninjaShoebox(FragTrap &trap)

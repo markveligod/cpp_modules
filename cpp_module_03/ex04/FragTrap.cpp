@@ -1,5 +1,14 @@
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap()
+{
+    std::cout << YELLOW << "[FragTrap]->[" << this->_name << "]" << GREEN << "[LIVE]\n" << RESET;
+    this->hit_points = 100;
+    this->max_hit_points = 100;
+    this->ranged_attack_damage = 20;
+    this->armor_damage_reduction = 5;
+}
+
 FragTrap::FragTrap(std::string name)
 {
     this->hit_points = 100;
@@ -27,7 +36,7 @@ FragTrap::FragTrap(std::string name)
 
 FragTrap::~FragTrap()
 {
-    std::cout << YELLOW << "[" << this->_name << "]" << RED << "[DEAD]\n" << RESET;
+    std::cout << YELLOW << "[FragTrap]->[" << this->_name << "]" << RED << "[DEAD]\n" << RESET;
 }
 
 void FragTrap::vaulthunter_dot_exe(std::string const &target)

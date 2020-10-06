@@ -6,12 +6,14 @@
 
 class NinjaTrap: virtual public ClapTrap
 {
+    protected:
+        NinjaTrap();
     public:
-    NinjaTrap(std::string name);
-    virtual ~NinjaTrap();
+        NinjaTrap(std::string name);
+        virtual ~NinjaTrap();
 
-    void ninjaShoebox(FragTrap &trap);
-	void ninjaShoebox(ScavTrap &trap);
-	void ninjaShoebox(ClapTrap &trap);
-	void ninjaShoebox(NinjaTrap &trap);
+        void ninjaShoebox(FragTrap &trap);
+	    void ninjaShoebox(ScavTrap &trap);
+	    void ninjaShoebox(ClapTrap &trap);
+	    void ninjaShoebox(NinjaTrap &trap);
 };

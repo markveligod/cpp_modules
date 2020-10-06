@@ -4,6 +4,8 @@
 
 class FragTrap: virtual public ClapTrap
 {
+    protected:
+        FragTrap();
     public:
         FragTrap(std::string name);
         virtual ~FragTrap();
