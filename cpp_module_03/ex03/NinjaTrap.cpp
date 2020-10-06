@@ -9,8 +9,9 @@ NinjaTrap::NinjaTrap(std::string name)
 	this->melee_attack_damage = 60;
 	this->ranged_attack_damage = 5;
 	this->armor_damage_reduction = 0;
+	this->level = 1;
     this->_name = name;
-    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[CREATE]\n" << RESET;
+    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[CREATE]" << RESET << "- " << this->level << " level\n";
     std::cout << CYAN;
     std::cout << "                               _.-'" << std::endl;
     std::cout << "                           _.-'" << std::endl;

@@ -11,7 +11,7 @@ FragTrap::FragTrap(std::string name)
     this->melee_attack_damage = 30;
     this->ranged_attack_damage = 20;
     this->armor_damage_reduction = 5;
-    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[LIVE]\n" << RESET;
+    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[LIVE]" << RESET << "- " << this->level << " level\n";
     std::cout << CYAN;
     std::cout << "      \\_/" << std::endl;
     std::cout << "     (* *)" << std::endl;

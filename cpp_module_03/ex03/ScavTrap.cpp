@@ -11,7 +11,7 @@ ScavTrap::ScavTrap(std::string name)
     this->melee_attack_damage = 20;
     this->ranged_attack_damage = 15;
     this->armor_damage_reduction = 3;
-    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[Locking the door]\n" << RESET;
+    std::cout << YELLOW << "[" << this->_name << "]" << GREEN << "[Locking the door]" << RESET << "- " << this->level << " level\n";
     std::cout << CYAN;
     std::cout << "         __" << std::endl;
     std::cout << " _(\\    |@@|" << std::endl;
