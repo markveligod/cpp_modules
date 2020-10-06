@@ -120,3 +120,27 @@ Forbidden functions :None
 
 As usual, yourmainwill be extended to test the new class.
 Вы заметили, как легко сделать новую "Claptrap" теперь, когда у вас есть родительский класс для нее?
+____________________________________________________________________________________________________________________________
+Exercise 04: Ultimate assault shoebox
+
+Turn-in directory : ex04/
+Files to turn in : Same as previous exercise + SuperTrap.cpp SuperTrap.hpp
+Forbidden functions : None
+
+Теперь вы объедините лучшее из обоих миров, сделав "Claptrap", который наполовину "Fragtrap", наполовину "Ninjatrap".
+Он будет называться "SuperTrap", и она унаследует от "FragTrap" и "NinjaTrap".
+Его атрибуты и функции будут выбраны из любого из его родительских классов:
+• Hit points (Fragtrap)
+• Max hit points (Fragtrap)
+• Energy points (Ninjatrap)
+• Max energy points (Ninjatrap)
+• Level (1)
+• Name (Parameter of constructor)
+• Melee attack damage (Ninjatrap)
+• Ranged attack damage (Fragtrap)
+• Armor damage reduction (Fragtrap)
+• rangedAttack (Fragtrap)
+• meleeAttack (Ninjatrap)
+У него будут особые атаки обоих.
+As usual, your main will be extended to test the new class.
+Конечно, часть Claptrap, состоящая из Supertrap, должна быть создана один раз, и только один раз... Да, тут есть одна хитрость. Посмотреть его.
