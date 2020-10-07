@@ -110,4 +110,142 @@ $>
 Если вы действительно тщательны, вы можете сделать еще несколько тестов: добавить производные классы и т. д...(Нет, на самом деле это не предложение, вы действительно должны это сделать.)
 Конечно, как обычно, вы включите свою функцию, потому что все, что не протестировано, не будет оценено.
 ____________________________________________________________________________________________________________________________
+Exercise 01: I don’t want to set the world on fire
 
+Turn-in directory : ex01/
+Files to turn in :AWeapon.[hpp,cpp], PlasmaRifle.[hpp,cpp],PowerFist.[hpp,cpp], Enemy.[hpp,cpp], SuperMutant.[hpp,cpp], RadScorpion.[hpp,cpp], Character.[hpp,cpp], main.cpp
+Forbidden functions :None
+
+В Пустоши можно найти очень много вещей. Кусочки металла, странные химикаты,кресты между ковбоями и бездомными подражателями панков, но также и лодка невероятных(но забавных!) оружие. И это тоже самое время, я хотел бы ударить кое-что в facetoday.
+
+Просто чтобы мы могли выжить во всем этом дерьме, вы собираетесь начать с кодирования нам некоторых видов оружия.Заполните и реализуйте следующий класс (не забудьте "Coplien’s form"...):
+class AWeapon
+{
+	private:
+		[...]
+	public:
+	AWeapon(std::string const & name, int apcost, int damage);
+	[...] ~AWeapon();
+	std::string [...] getName() const;
+	int getAPCost() const;
+	int getDamage() const;
+	[...] void attack() const = 0;
+};
+
+Info:
+• Оружие имеет название, количество очков урона, наносимого при попадании, и стоимость стрельбы в AP (action points).
+
+• Оружие производит определенные звуки и световые эффекты, когда вы "attack()" с его помощью.Это будет отложено до наследующих классов.
+
+После этого можно реализовать конкретные классы "PlasmaRifle" и "PowerFist".Вот их характеристики:
+• PlasmaRifle:
+	◦ Name: "Plasma Rifle"
+	◦ Damage: 21
+	◦ AP cost: 5
+	◦ Output of attack(): "* piouuu piouuu piouuu *"
+•PowerFist:
+	◦ Name: "Power Fist"
+	◦ Damage: 50
+	◦ AP cost: 8
+	◦ Output of attack(): "* pschhh... SBAM! *"
+	
+Ну вот и все. Теперь, когда у нас есть много блестящего оружия, чтобы играть с ним, нам понадобится несколько врагов, чтобы сражаться! (Или разогнать, свалить в кучу, прибить гвоздями к дверям, креогизировать и т. д...)
+Создайте класс "Enemy", используя следующую модель (вам придется завершить ее, очевидно,и снова "Coplien"...):
+
+class Enemy
+{
+	private:
+		[...]
+	public:
+		Enemy(int hp, std::string const & type);
+		[...] ~Enemy();
+		std::string [...] getType() const;
+		int getHP() const;
+		virtual void takeDamage(int);
+};
+
+Constraints:
+	• У противника есть несколько hit points и type.
+	• Враг может получить урон (что уменьшает его HP). Если урон <0, ничего не делайте.
+
+Затем вы будете реализовывать некоторых конкретных врагов. Просто чтобы повеселиться.Во-первых, "SuperMutant". Большой, плохой, уродливый, и с IQ обычно ассоциируется больше с цветочным горшком, чем с живым существом. Тем не менее, это немного похоже на коридор аманкубузины: если вы скучаете по нему, вы действительно делаете это нарочно. Так что это отличный мяч для тренировок.
+Here are its characteristics:
+• HP: 170
+• Type: "Super Mutant"
+• On birth, displays: "Gaaah. Me want smash heads!"
+• Upon death, displays: "Aaargh..."
+• Перегружает "takeDamage", чтобы взять на 3 очка меньше урона, чем обычно (да, они очень сильны, эти ребята.)
+
+Теперь сделай нам RadScorpion. Не такой уж дикий зверь, признаю. Но все же в гигантском Скорпионе есть что-то определенное, верно?
+• Characteristics:
+	◦ HP: 80
+	◦ Type: "RadScorpion"
+	◦ On birth, displays: "* click click click *"
+	◦ Upon death, displays: "* SPROTCH *"
+	
+Теперь, когда у нас есть оружие и враги, чтобы примерить его, нам просто нужно существовать самим.Итак, вы собираетесь создать класс Character со следующей моделью (вы знаете дрель):
+class Character
+{
+	private:
+		[...]
+	public:
+		Character(std::string const & name);
+		[...]
+		~Character();
+		void recoverAP();
+		void equip(AWeapon*);
+		void attack(Enemy*);
+		std::string [...] getName() const;
+};
+
+• Имеет имя, количество точек AP (Action points) и указатель на оружие, представляющее текущее оружие.
+• Обладает 40 AP при создании, теряет AP, соответствующий оружию, которое он имеет при каждом использовании, и восстанавливает 10 AP при каждом вызове "recoverAP ()", до максимума 40. Нет АП, нет атаки.
+• Отображает "NAME attacks ENEMY_TYPE with a WEAPON_NAME" при вызове функции attack(), за которой следует вызов метода attack() текущего оружия. Если нет оснащенного оружия, attack() ничего не делает. Затем вы будете вычитать из HP противника значение урона оружия. После этого, если цель имеет 0 л. с. или меньше, вы должны удалить ее.
+• equip() будет просто хранить указатель на оружие, там нет никакой копии.
+
+Вы также реализуете перегрузку оператора<<to ostream для отображения атрибутов вашего персонажа. Добавьте все необходимые функции геттера.Эта перегрузка будет отображаться:
+"NAME has AP_NUMBER AP and wields a WEAPON_NAME"
+
+если там есть оружие. В противном случае он будет отображаться:
+"NAME has AP_NUMBER AP and is unarmed"
+
+Вот (довольно простая) тестовая основная функция. Твой должен быть лучше.
+int main()
+{
+	Character* me = new Character("me");
+	std::cout << *me;
+	Enemy* b = new RadScorpion();
+	AWeapon* pr = new PlasmaRifle();
+	AWeapon* pf = new PowerFist();
+	me->equip(pr);
+	std::cout << *me;
+	me->equip(pf);
+	me->attack(b);
+	std::cout << *me;
+	me->equip(pr);
+	std::cout << *me;
+	me->attack(b);
+	std::cout << *me;
+	me->attack(b);
+	std::cout << *me;
+	return 0;
+}
+
+Output:
+$> clang++ -W -Wall -Werror *.cpp
+$> ./a.out | cat -e
+me has 40 AP and is unarmed$
+* click click click *$
+me has 40 AP and wields a Plasma Rifle$
+me attacks RadScorpion with a Power Fist$
+* pschhh... SBAM! *$
+me has 32 AP and wields a Power Fist$
+me has 32 AP and wields a Plasma Rifle$
+me attacks RadScorpion with a Plasma Rifle$
+* piouuu piouuu piouuu *$
+me has 27 AP and wields a Plasma Rifle$
+me attacks RadScorpion with a Plasma Rifle$
+* piouuu piouuu piouuu *$* SPROTCH *$
+me has 22 AP and wields a Plasma Rifle$
+
+As usual, turn in amainwith your tests.
