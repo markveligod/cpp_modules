@@ -245,7 +245,8 @@ me attacks RadScorpion with a Plasma Rifle$
 * piouuu piouuu piouuu *$
 me has 27 AP and wields a Plasma Rifle$
 me attacks RadScorpion with a Plasma Rifle$
-* piouuu piouuu piouuu *$* SPROTCH *$
+* piouuu piouuu piouuu *$
+* SPROTCH *$
 me has 22 AP and wields a Plasma Rifle$
 
 As usual, turn in amainwith your tests.
