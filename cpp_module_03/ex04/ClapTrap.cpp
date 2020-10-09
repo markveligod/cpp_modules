@@ -14,7 +14,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << YELLOW << "[PARENT]" << RED << "[DEAD]\n" << RESET;
+    std::cout << YELLOW << "[ClapTrap]" << RED << "[DEAD]\n" << RESET;
 }
 
 void ClapTrap::rangedAttack(std::string const & target)
