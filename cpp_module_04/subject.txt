@@ -250,3 +250,86 @@ me attacks RadScorpion with a Plasma Rifle$
 me has 22 AP and wields a Plasma Rifle$
 
 As usual, turn in amainwith your tests.
+____________________________________________________________________________________________________________________________
+Exercise 02: This code is unclean.PURIFY IT!
+
+Turn-in directory: ex02/
+Files to turn in: Squad.hpp, Squad.cpp, TacticalMarine.hpp, TacticalMarine.cpp, AssaultTerminator.hpp, AssaultTerminator.cpp,ISpaceMarine.hpp, ISquad.hpp, main.cpp
+Forbidden functions :None
+
+Ваша миссия состоит в том, чтобы построить армию, достойную доблестных крестоносцев льва. Окрашены в оранжевые и белые полосы. Да, да, правда.
+Вам придется реализовать элементы вашей будущей армии, а именно "Squad" и тактический космодесантник (TacticalMarine).
+Давайте начнем с Squad. Вот интерфейс, который вам нужно будет реализовать (включая ISquad.hpp):
+
+class ISquad
+{
+	public:
+		virtual ~ISquad() {}
+		virtual int getCount() const = 0;
+		virtual ISpaceMarine* getUnit(int) const = 0;
+		virtual int push(ISpaceMarine*) = 0;
+};
+
+Вы будете реализовывать его так, чтобы:
+• getCount() возвращает количество единиц, находящихся в данный момент в отряде
+• getUnit(N) возвращает указатель на N-ю единицу измерения (конечно, мы начинаем с 0. Нулевой указатель в случае индекса out-of-bounds.)
+• push(XXX) добавляет единицу XXX в конец отряда. Возвращает количество единиц в отряде после операции (добавление нулевой единицы или единицы, уже находящейся в отряде, конечно, не имеет никакого смысла...)
+В конце концов, мы просим вас создать простой контейнер космических кораблей, который мы будем использовать, чтобы правильно структурировать вашу армию.При построении копии или назначении отряда копия должна быть глубокой. По назначению, если раньше в отряде было какое-то подразделение, оно должно быть уничтожено, прежде чем быть заменено. Вы можете предположить, что каждый блок будет создан с new.
+Когда отряд уничтожен, подразделения внутри также уничтожаются, по порядку. Для тактической морской пехоты вот интерфейс для реализации (включая ISpaceMarine.hpp):
+class ISpaceMarine
+{
+	public:
+		virtual ~ISpaceMarine() {}
+		virtual ISpaceMarine* clone() const = 0;
+		virtual void battleCry() const = 0;
+		virtual void rangedAttack() const = 0;
+		virtual void meleeAttack() const = 0;
+};
+
+Constraints:
+• clone() возвращает копию текущего объекта
+• При создании отображается: "Tactical Marine ready for battle!"
+• battleCry() выводит: "For the holy PLOT!"
+• rangedAttack() отображает: "* attacks with a bolter *"
+• meleeAttack() отображает: "* attacks with a chainsword *"
+• После смерти выводит: "Aaargh..."
+
+Во многом таким же образом реализуйте AssaultTerminator, со следующими выходами:
+• Birth: "* teleports from space *"
+• battleCry(): "This code is unclean. PURIFY IT!"
+• rangedAttack: "* does nothing *"
+• meleeAttack: "* attacks with chainfists *"
+• Death: "I’ll be back..."
+
+Вот немного тестового кода. Как обычно, ваш должен быть более тщательным
+int main()
+{
+	ISpaceMarine* bob = new TacticalMarine;
+	ISpaceMarine* jim = new AssaultTerminator;
+	ISquad* vlc = new Squad;vlc->push(bob);
+	vlc->push(jim);
+	for (int i = 0; i < vlc->getCount(); ++i)
+	{
+		ISpaceMarine* cur = vlc->getUnit(i);
+		cur->battleCry();cur->rangedAttack();
+		cur->meleeAttack();
+	}
+	delete vlc;
+	return 0;
+}
+
+Output :
+$> clang++ -W -Wall -Werror *.cpp
+$> ./a.out | cat -e
+Tactical Marine ready for battle!$
+* teleports from space *$
+For the holy PLOT!$
+* attacks with a bolter *$
+* attacks with a chainsword *$
+This code is unclean. PURIFY IT!$
+* does nothing *$
+* attacks with chainfists *$
+Aaargh...$
+I'll be back...$
+
+Будьте внимательны, когда вы делаете функцию, которую вы будете сдавать, чтобы получить свой рейтинг...
