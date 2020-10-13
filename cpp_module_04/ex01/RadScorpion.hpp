@@ -16,5 +16,5 @@ class RadScorpion: public Enemy
 
         RadScorpion &operator=(RadScorpion const & base);
 
-        void takeDamage(int amount) override;
+        void takeDamage(int amount);
 };

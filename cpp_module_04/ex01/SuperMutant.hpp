@@ -16,5 +16,5 @@ class SuperMutant: public Enemy
 
         SuperMutant &operator=(SuperMutant const & base);
 
-        void takeDamage(int amount) override;
+        void takeDamage(int amount);
 };

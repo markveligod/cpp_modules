@@ -16,5 +16,5 @@ class PowerFist: public AWeapon
 
         PowerFist &operator=(PowerFist const & base);
 
-        void attack() const override;
+        void attack() const;
 };

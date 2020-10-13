@@ -16,5 +16,5 @@ class PlasmaRifle: public AWeapon
 
         PlasmaRifle &operator=(PlasmaRifle const & base);
 
-        void attack() const override;
+        void attack() const;
 };
