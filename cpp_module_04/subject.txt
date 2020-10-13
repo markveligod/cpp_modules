@@ -334,3 +334,116 @@ Aaargh...$
 I'll be back...$
 
 Будьте внимательны, когда вы делаете функцию, которую вы будете сдавать, чтобы получить свой рейтинг...
+____________________________________________________________________________________________________________________________
+Exercise 03: Bocal Fantasy
+
+Turn-in directory :ex03/
+Files to turn in :AMateria.hpp, AMateria.cpp, Ice.hpp, Ice.cpp, Cure.hpp,Cure.cpp, Character.hpp, Character.cpp, MateriaSource.hpp, MateriaSource.cpp, ICharacter.hpp, IMateriaSource.hpp, main.cpp
+Forbidden functions :None
+
+Завершите определение следующего класса AMateria и реализуйте необходимые функции-члены.
+
+class AMateria
+{
+	private:
+		[...]
+		unsigned int _xp;
+	public:
+		AMateria(std::string const & type);
+		[...]
+		[...] ~AMateria();
+		
+		std::string const & getType() const; //Returns the materia type
+		unsigned int getXP() const; //Returns the Materia's XP
+		
+		virtual AMateria* clone() const = 0;
+		virtual void use(ICharacter& target);
+};
+
+Система XP Materia работает следующим образом:
+	Материал имеет общее количество XP, начинающееся с 0 и увеличивающееся на 10 при каждом вызове use(). Найдите умный способ справиться с этим!
+	Создайте конкертный материал Ice и Cure. Их типом будет их имя в нижнем регистре ("ice" для Ice и т. д.).
+	Их метод clone (), конечно же, вернет новый экземпляр типа реальной материи.
+
+Что касается метода use(ICharacter&), то он будет отображаться:
+	• Ice: "* shoots an ice bolt at NAME *"
+	• Cure: "* heals NAME’s wounds *"
+	(Конечно, замените имя на имя символа, заданного в качестве параметра.)
+
+Создайте класс Character, который будет реализовывать следующий интерфейс:
+class ICharacter
+{
+	public:
+		virtual ~ICharacter() {}
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};
+
+Персонаж обладает запасом не более 4 материалов, пустых в начале. Он будет выкладывать материю в слоты от 0 до 3, в таком порядке.
+
+В случае, если мы попытаемся оборудовать материю в полном инвентаре или use/uneqip несуществующую материю, ничего не делайте.
+
+The unequip method must NOT delete Materia!
+
+The use(int, ICharacter&) method will have to use the Materia at the idx slot, and pass target as parameter to the AMateria::use method.
+
+Конечно, вы должны быть в состоянии поддерживать любую AMateria в инвентаре Character.
+
+У вашего персонажа должен быть конструктор, принимающий его имя в качестве параметра. Копирование или назначение персонажа должно быть глубоким, конечно. Старый материал персонажа должен быть удален. То же самое при разрушении характера.
+
+Теперь, когда ваши персонажи могут экипировать и использовать материю, это начинает выглядеть правильно.
+
+Тем не менее, я бы не хотел создавать материалы вручную, и поэтому должен знать их реальный тип... Итак, вам придется создать умный источник материи.
+
+Создайте класс MateriaSource, который должен будет реализовать следующий интерфейс:
+
+class IMateriaSource
+{
+	public:
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const & type) = 0;
+};
+
+learnMateria должен скопировать материал, переданный в качестве параметра, и сохранить его в памяти для последующего клонирования. Во многом так же, как и для персонажа, источник может знать не более 4 материалов, которые не обязательно уникальны.
+
+createMateria(std::string const &) вернет новый материал, который будет копией материала (ранее изученного источником), тип которого равен параметру. Возвращает 0, если тип неизвестен.
+
+Короче говоря, ваш источник должен уметь изучать "шаблоны" материалов и воссоздавать их по требованию. Тогда вы сможете создать материю,не зная ее "реального" типа, просто строку, идентифицирующую ее. Жизнь хороша, а?
+
+Как обычно, вот главный тест, который вам нужно будет улучшить:
+int main()
+{
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	ICharacter* me = new Character("me");
+
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	ICharacter* bob = new Character("bob");
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+	
+	delete bob;
+	delete me;
+	delete src;
+	
+	return 0;
+}
+
+Output:
+$> clang++ -W -Wall -Werror *.cpp
+$> ./a.out | cat -e
+* shoots an ice bolt at bob *$
+* heals bob's wounds *$
+
+Не забудь включить свою главную функцию, потому что ты... ну, хорошо, теперь ты знаешь правила, не так ли?
