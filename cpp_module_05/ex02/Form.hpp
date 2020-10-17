@@ -7,6 +7,7 @@
 */
 class Form;
 # include "Bureaucrat.hpp"
+# include <fstream>
 
 /*
 **==========================
@@ -31,7 +32,7 @@ class Form
 	public:
 		Form(std::string name, int sign, int execute);
 		Form(Form const &other);
-		~Form();
+		virtual ~Form();
 
 		Form &operator=(Form const &other);
 
@@ -51,6 +52,14 @@ class Form
 					return ("Form::GradeTooLowException");
 				}
 		};
+		class UnsignedFormException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Form::UnsignedFormException");
+				}
+		};
 
 		std::string getName() const;
 		int getNumSign() const;
@@ -58,6 +67,7 @@ class Form
 		bool getSigned(void) const;
 
 		void beSigned(Bureaucrat const &base);
+		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &os, Form const &base);

@@ -78,6 +78,14 @@ void Form::beSigned(Bureaucrat const &base)
 	std::cout << YELLOW << "[" << this->_name << "]: " << RESET << "signed by a " << GREEN << "<" << base.getName() << ">" << RESET << std::endl;
 }
 
+void Form::execute(Bureaucrat const & executor) const
+{
+	if (executor.getGrade() > this->_num_execute)
+		throw Form::GradeTooLowException();
+	if (!this->_sign)
+		throw Form::UnsignedFormException();
+}
+
 std::ostream &operator<<(std::ostream &os, Form const &base)
 {
 	os << YELLOW << "[" << base.getName() << "]: " << RESET << "Sign: " << ((base.getSigned()) ? GREEN : RED) << "<" << ((base.getSigned()) ? "✓" : "×") << "> " << RESET;

@@ -21,20 +21,14 @@ class ShrubberyCreationForm: public Form
 
 		ShrubberyCreationForm &operator=(ShrubberyCreationForm const &other);
 
-		class GradeTooHighException: public std::exception
-		{
-			public:
-				virtual const char* what() const throw()
-				{ 
-					return ("ShrubberyCreationForm::GradeTooHighException");
-				}
-		};
-		class GradeTooLowException: public std::exception
+		class FileOpenException: public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("ShrubberyCreationForm::GradeTooLowException");
+					return ("ShrubberyCreationForm::FileOpenException");
 				}
 		};
+
+		void execute(Bureaucrat const & executor) const;
 };
