@@ -22,7 +22,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target): Form("Shrubber
 		"            .     \"      000      \"    .     .\n" \
 		"       .         .   .   000     .        .       .\n" \
 		".. .. ..................O000O........................ ...... ...\n";
-	std::cout << YELLOW << "[Child]: from " << GREEN << "<" << this << "> " << RESET << "created form with target: " << GREEN << this->_target << RESET << std::endl;
+	std::cout << YELLOW << "[Child]:" << RESET << " from " << GREEN << "<" << this << "> " << RESET << "created form with target: " << GREEN << this->_target << RESET << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &other): Form(other)

@@ -100,6 +100,22 @@ void Bureaucrat::signForm(Form &base) const
 	}
 }
 
+void Bureaucrat::executeForm(Form const &base) const
+{
+	if (!base.getSigned())
+	{
+		std::cout << YELLOW << "[" << this->_name << "]: " << RESET << "cannot execute " << YELLOW << "<" << base.getName() << ">" << RESET << " because the form is unsigned!" << std::endl;
+	}
+	else if (base.getNumExecute() < this->_grade)
+	{
+		std::cout << YELLOW << "[" << this->_name << "]: " << RESET << "cannot execute " << YELLOW << "<" << base.getName() << ">" << RESET << " because lower-ranking " << YELLOW << "<" << this->_name << ">" << RESET << std::endl;
+	}
+	else
+	{
+		base.execute(*this);
+	}
+}
+
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &base)
 {
 	os << YELLOW << "<" << base.getName() << ">" << RESET << ", bureaucrat grade " << CYAN << "<" << base.getGrade() << ">." << RESET;

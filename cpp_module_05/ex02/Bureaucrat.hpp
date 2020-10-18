@@ -58,6 +58,7 @@ class Bureaucrat
 					return ("Bureaucrat::GradeTooLowException");
 				}
 		};
+		void executeForm(Form const &base) const;
 };
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &base);
