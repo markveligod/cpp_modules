@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
@@ -21,6 +22,11 @@ int main()
 	robot->execute(francis);
 	francis.executeForm(*robot);
 	francis.executeForm(*robot);
+
+	Form *pres = new PresidentialPardonForm("President");
+	std::cout << *pres << std::endl;
+	supervisor.signForm(*pres);
+	pres->execute(supervisor);
     std::cout << "|=======================================================|\n";
     try
 	{
@@ -46,7 +52,19 @@ int main()
 		std::cerr << RED << "[Error]: " << RESET << e.what() << std::endl;
 	}
     std::cout << "|=======================================================|\n";
+	try
+	{
+		PresidentialPardonForm pardon = PresidentialPardonForm("President");
+		std::cout << pardon << std::endl;
+		pardon.execute(supervisor);
+	}
+	catch(std::exception const &e)
+	{
+		std::cerr << RED << "[Error]: " << RESET << e.what() << std::endl;
+	}
+    std::cout << "|=======================================================|\n";
     delete shrub;
     delete robot;
+	delete pres;
     return (0);
 }

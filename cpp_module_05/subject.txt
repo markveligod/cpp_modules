@@ -71,7 +71,7 @@ ________________________________________________________________________________
 Exercise 02: No, you need form 28B,not 28C...
 
 Turn-in directory :ex02/
-Files to turn in :Same as before + ShrubberyCreationForm.[hpp,cpp]RobotomyRequestForm.[hpp,cpp] PresidentialPardonForm.[hpp,cpp]
+Files to turn in :Same as before + ShrubberyCreationForm.[hpp,cpp] RobotomyRequestForm.[hpp,cpp] PresidentialPardonForm.[hpp,cpp]
 Forbidden functions :None
 
 Теперь, когда у вас есть основные формы, вы сделаете несколько форм, которые действительно что-то делают
