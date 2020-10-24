@@ -37,7 +37,9 @@ Convert::Convert(char *av)
 	else if ((isdigit(argv[0])) || (argv[0] == '-' && isdigit(argv[1])))
 	{
 		long int temp = strtod(av, &end);
-		if (*end != '\0' && *end != 'f')
+		if ((end[0] != 'f' && end[0] != '\0') ||
+		(end[0] == 'f' && end[1] != '\0') ||
+		(end[0] == '.' && end[1] == 'f' && end[2] != '\0'))
 			throw Convert::UnknownString();
 
 		if (temp > std::numeric_limits<char>::max() || temp < std::numeric_limits<char>::min())
