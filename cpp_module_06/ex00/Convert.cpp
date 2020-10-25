@@ -69,8 +69,9 @@ Convert::Convert(char *av)
 			ss.str(std::string());
 		}
 
-		if (temp > std::numeric_limits<float>::max() || temp < std::numeric_limits<float>::min())
+		if (temp + 0.00000001 > std::numeric_limits<float>::max() || temp + 0.00000001 < std::numeric_limits<float>::min())
 		{
+			std::cout << temp << " | " << std::numeric_limits<float>::min() << std::endl;
 			this->std_float = "overflow";
 		}
 		else
@@ -81,7 +82,7 @@ Convert::Convert(char *av)
 			ss.str(std::string());
 		}
 
-		if (temp > std::numeric_limits<double>::max() || temp < std::numeric_limits<double>::min())
+		if (temp + 0.00000001 > std::numeric_limits<double>::max() || temp + 0.00000001 < std::numeric_limits<double>::min())
 		{
 			this->std_double = "overflow";
 		}
