@@ -26,7 +26,7 @@ $(NAME): $(OBJ)
 	@echo "   (_______)$(RESET)"
 	@echo ""
 	@echo "$(RED)[Exercise 02: Array]:$(RESET)"
-	@echo "$(YELLOW)Напишите класс шаблона $(CYAN)Array$(YELLOW) который содержит элементы типа T: $(RESET)"
+	@echo "$(YELLOW)Напишите шаблон класса $(CYAN)Array$(YELLOW) который содержит элементы типа $(CYAN)T$(YELLOW). $(RESET)"
 	@echo ""
 	@echo "$(RED)[For example]:$(RESET)"
 	@echo "$(YELLOW)./$(NAME) $(RESET)"
