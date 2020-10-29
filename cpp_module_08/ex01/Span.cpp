@@ -44,11 +44,13 @@ int Span::shortestSpan() const
 		throw std::runtime_error("Size < 2");
 	std::vector<int> temp(this->arr.size());
 	std::copy(this->arr.begin(), this->arr.end(), temp.begin());
-	std::vector<int>::iterator temp_min = std::min_element(temp.begin(), temp.end());
-	int min_1 = *temp_min;
-	temp.erase(temp_min);
-	std::vector<int>::iterator min_2 = std::min_element(temp.begin(), temp.end());
-	return ((*min_2) - min_1);
+	std::sort(temp.begin(), temp.end());
+	int res = temp[1] - temp[0];
+	for (size_t i = 0; i < temp.size(); i++)
+		if (temp[i + 1] && (temp[i + 1] - temp[i]) < res)
+			res = temp[i + 1] - temp[i];
+	return (res);
+	
 }
 
 int	Span::longestSpan() const

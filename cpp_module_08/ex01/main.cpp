@@ -78,6 +78,20 @@ int main()
     }
 
     std::cout << RED << "|============================|\n" << RESET;
+    std::cout << CYAN << "Testing ERROR overflow...\n" << RESET;
+    try
+    {
+        Span sp_2 = Span(5);
+
+        sp_2.addNumber(50000000000);
+        std::cout << sp_2.shortestSpan() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << "\t[Error]: " << RESET << e.what() << '\n';
+    }
+
+    std::cout << RED << "|============================|\n" << RESET;
     std::cout << CYAN << "Testing numbers with 10 000 value...\n" << RESET;
     try
     {

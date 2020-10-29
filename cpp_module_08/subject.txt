@@ -72,3 +72,55 @@ $> ./ex01
 2
 14
 $>
+____________________________________________________________________________________________________________________________
+Exercise 02: Mutated abomination
+
+Turn-in directory :ex02/
+Files to turn in : mutantstack.cpp mutantstack.hpp main.cpp
+Forbidden functions : None
+
+Теперь, когда закуски закончились, давайте сделаем некоторые отвратительные вещи.
+
+std::stack контейнер очень крутой, но это один из многих контейнеров которые не итерируются. Это тоже плохо. но зачем мириться с этим, когда мы можем просто играть в Бога и просто разделывать его, чтобы добавить что-то, что нам нравится?
+
+Вы соедините эту способность в std::stack контейнер, чтобы исправить эту серьезную несправедливость.
+
+Создайте MutantStack класс который будет реализовывать условия std::stack, и предложите все его функции-члены, только он также предложит итератор.
+
+Ниже приведен пример кода, вывод которого должен быть таким же, как если бы мы заменили MutantStack с помощью, например, и std::list. Вы, конечно, предоставите тесты для всего этого в своей основной функции.
+
+int main() 
+{
+    MutantStack<int>    mstack;
+
+    mstack.push(5);
+    mstack.push(17);
+
+    std::cout << mstack.top() << std::endl;
+
+    mstack.pop();
+
+    std::cout << mstack.size() << std::endl;
+
+    mstack.push(3);
+    mstack.push(5);
+    mstack.push(737);
+    //[...]
+    mstack.push(0);
+
+    MutantStack<int>::iterator it = mstack.begin();
+    MutantStack<int>::iterator ite = mstack.end();
+
+    ++it;
+
+    --it;
+
+    while(it != ite)
+    {
+        std::cout << *it << std::endl;
+        ++it;
+    }
+    std::stack<int> s(mstack);
+    
+    return 0;
+}
