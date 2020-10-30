@@ -114,3 +114,7 @@
 [Templated containers](https://ravesli.com/urok-197-kontejnery-stl/)  
 [Iterators](https://metanit.com/cpp/tutorial/7.3.php)  
 [Algorithms](https://ravesli.com/algoritmy-v-standartnoj-biblioteke-s/)  
+
+## Other
+**Author:**  
+*[Mark Veligod](https://github.com/markveligod)*  
